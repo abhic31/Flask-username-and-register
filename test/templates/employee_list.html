@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee List</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <h2>Dashboard and Employee Listing Page</h2>
+
+    <!-- Add a search form at the top -->
+    <form method="GET" action="{{ url_for('employee_list') }}">
+        <input type="text" name="search_keyword" placeholder="Search anything here">
+        <button type="submit">Search</button>
+    </form>
+
+    <table>
+        <tr>
+            <th>User ID</th>
+            <th>Email</th>
+            <th>Department</th>
+            <th>Actions</th>
+        </tr>
+        {% for employee in employees %}
+            <tr>
+                <td>{{ employee.user_id }}</td>
+                <td>{{ employee.email }}</td>
+                <td>{{ employee.department }}</td>
+                <td>
+                    <a href="{{ url_for('update_employee', id=employee.id) }}">Edit</a>
+                    <a href="{{ url_for('delete_employee', id=employee.id) }}">Delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <p><a href="{{ url_for('create_employee') }}">Create Employee</a></p>
+</body>
+</html>

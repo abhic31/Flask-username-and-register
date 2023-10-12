@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Employee</title>
+</head>
+<body>
+    <h2>Update Employee</h2>
+    <form method="POST" action="{{ url_for('update_employee', id=employee.id) }}">
+        {{ form.hidden_tag() }} <!-- Add this line to include the CSRF token -->
+        <label for="user_id">User ID:</label>
+        <input type="text" name="user_id" id="user_id" value="{{ employee.user_id }}" required><br>
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="password" value="{{ employee.password }}" required><br>
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email" value="{{ employee.email }}" required><br>
+        <label for="department">Department:</label>
+        <input type="text" name="department" id="department" value="{{ employee.department }}" required><br>
+        <label for="date_of_joining">Date of Joining:</label>
+        <input type="date" name="date_of_joining" id="date_of_joining" value="{{ employee.date_of_joining }}" required><br>
+        <input type="submit" value="Update Employee">
+    </form>
+    <p><a href="{{ url_for('employee_list') }}">Back to Employee List</a></p>
+</body>
+</html>
